@@ -3,6 +3,10 @@
         "main_url": "http://www.sredec-sofia.org/",
         "talks_url": "http://sredec-sofia.org/bg/topic/21/syobshteniya"
     },
+    "Sofia": {
+        "main_url": "https://www.sofia.bg/",
+        "talks_url": "https://www.sofia.bg/en/public-discussions"
+    },
     "KrasnoSelo": {
         "main_url": "http://www.krasnoselo.net/",
         "talks_url": "https://www.krasnoselo.net/content.php?cntid=79"
