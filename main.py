@@ -28,7 +28,7 @@ def main():
         response.encoding = 'utf-8' 
         html_str = response.text
         feed_list = parser(html_str)
-        print(feed_list)
+        print(feed_list[:10])
 
 if __name__ == "__main__":
     main()
