@@ -14,7 +14,7 @@ def sredec_parser(html_str):
         title = a_elem['title'].strip()
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -36,7 +36,10 @@ def krasno_selo_parser(html_str):
 
             date = item.text[start + len("публикувано на "):]
             match = re.search(r'\d+(.|-)\d+(.|-)\d+', date)
-            date = datetime.strptime(match.group(), "%d.%m.%Y").date()
+            try:
+                date = datetime.strptime(match.group(), "%d.%m.%Y").date()
+            except Exception as ex:
+                date = ""
             title = a_elem.text
             link = a_elem['href']
         except Exception as ex:
@@ -46,7 +49,7 @@ def krasno_selo_parser(html_str):
             continue
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -66,7 +69,7 @@ def sofia_parser(html_str):
 
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -85,7 +88,7 @@ def oborishte_parser(html_str):
         date = datetime.strptime(item.select('.txt')[0].text.strip(), "%d.%m.%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -103,7 +106,7 @@ def poduiane_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -123,7 +126,7 @@ def slatina_parser(html_str):
         # date = ""
         # #TODO: refactor this as a dataclass?
         # result_list.append({
-        #     "Date": date,
+        #     "Date": str(date),
         #     "Title": title,
         #     "Link": link
         # })
@@ -142,7 +145,7 @@ def izgrev_parser(html_str):
         date = datetime.strptime(item.select("p.p-border")[0].text.strip(), "%d.%m.%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -162,7 +165,7 @@ def lozenets_parser(html_str):
         date = datetime.strptime(item.select(".updated")[0].text.strip(), "%d.%m.%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -180,7 +183,7 @@ def triaditsa_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -200,7 +203,7 @@ def ilinden_parser(html_str):
         date = datetime.strptime(p_item.text.split()[-1].strip(), "%d/%m/%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -221,7 +224,7 @@ def nadejda_parser(html_str):
         date = datetime.strptime(p_item.text.strip(), "%d/%m/%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -241,7 +244,7 @@ def iskar_parser(html_str):
         date = datetime.strptime(item.select(".date-and-category")[0].text.strip(), "%d.%m.%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -261,7 +264,7 @@ def mladost_parser(html_str):
         date = datetime.strptime(item.select(".date")[0].text.strip(), "%d.%m.%y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -281,7 +284,7 @@ def studentski_parser(html_str):
         date = datetime.strptime(item.select(".updated")[0].text.strip(), "%d.%m.%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -306,7 +309,7 @@ def vitosha_parser(html_str):
             continue
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -326,7 +329,7 @@ def ovcha_kupel_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -343,7 +346,7 @@ def lyulin_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -361,7 +364,7 @@ def novi_iskar_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -380,7 +383,7 @@ def pancharevo_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -399,7 +402,7 @@ def bankya_parser(html_str):
         date = datetime.strptime(item.select(".date")[0].text.strip(), "%d.%m.%Y")
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -418,7 +421,7 @@ def vazrajdane_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -437,7 +440,7 @@ def krasna_polqna_parser(html_str):
         date = ""
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -459,7 +462,7 @@ def obshtina_parser(html_str):
 
         #TODO: refactor this as a dataclass?
         result_list.append({
-            "Date": date,
+            "Date": str(date),
             "Title": title,
             "Link": link
         })
@@ -467,30 +470,30 @@ def obshtina_parser(html_str):
     return result_list
 
 parsers_dict = {
-    # "Sredec": sredec_parser,
-    # "Sofia": sofia_parser,
-    # "KrasnoSelo": krasno_selo_parser,
-    # "Vazrajdane": vazrajdane_parser,
-    # "Oborishte": oborishte_parser,
-    "Serdika": None,
-    # "Poduiane": poduiane_parser,
-    # "Slatina": slatina_parser,
-    # "Izgrev": izgrev_parser,
-    # "Lozenets": lozenets_parser,
-    # "Triaditsa": triaditsa_parser,
-    # "KrasnaPolqna": krasna_polqna_parser,
-    # "Ilinden": ilinden_parser,
-    # "Nadejda": nadejda_parser,
-    # "Iskar": iskar_parser,
-    # "Mladost": mladost_parser,
-    # "Studentski": studentski_parser,
-    "Vitosha": None,
-    # "OvchaKupel": ovcha_kupel_parser,
-    # "Lyulin": lyulin_parser,
-    "Vrabnitsa": None,
-    # "NoviIskar": novi_iskar_parser,
-    "Kremikovci": None,
-    # "Pancharevo": pancharevo_parser,
-    # "Bankya": bankya_parser,
+    "Sredec": sredec_parser,
+    "Sofia": sofia_parser,
+    "KrasnoSelo": krasno_selo_parser,
+    "Vazrajdane": vazrajdane_parser,
+    "Oborishte": oborishte_parser,
+    "Serdika": None, # No site found
+    "Poduiane": poduiane_parser,
+    "Slatina": None, # Site doesn't support crawling
+    "Izgrev": izgrev_parser,
+    "Lozenets": lozenets_parser,
+    "Triaditsa": triaditsa_parser,
+    "KrasnaPolqna": krasna_polqna_parser,
+    "Ilinden": ilinden_parser,
+    "Nadejda": nadejda_parser,
+    "Iskar": iskar_parser,
+    "Mladost": mladost_parser,
+    "Studentski": studentski_parser,
+    "Vitosha": None, # Site doessn't support crawling
+    "OvchaKupel": ovcha_kupel_parser,
+    "Lyulin": lyulin_parser,
+    "Vrabnitsa": None, # No site found
+    "NoviIskar": novi_iskar_parser,
+    "Kremikovci": None, # No site found
+    "Pancharevo": pancharevo_parser,
+    "Bankya": bankya_parser,
     "Obshtina": obshtina_parser,
 }

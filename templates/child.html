@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>New Messages</h1>
+    <table>
+        <tr>
+            <td>Region</td>
+            <td>Title</td>
+            <td>Link</td>
+            <td>Date</td>
+        </tr>
+      {% for region in data %}
+        {% for value in data[region] %}
+          <tr>
+          <td>{{ region }}</td>
+          <td>{{ value['Title'] }}</td>
+          <td>{{ value['Link'] }}</td>
+          <td>{{ value['Date'] }}</td>
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </table>
+    <p>
+{% endblock %}
